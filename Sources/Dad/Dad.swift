@@ -18,7 +18,7 @@ public func readNumber() -> Int {
 /// Of File (EOF) sequence.
 ///
 /// - Returns: The user's input
-func readText() -> String {
+public func readText() -> String {
     return readLine()!
 }
 
