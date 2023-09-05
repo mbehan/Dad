@@ -3,7 +3,7 @@
 /// Reads a line from the standard input and attempts to create an `Int` from it.
 /// Performs no checking of the input and will crash if no input was read, or if the
 /// value that was read cannot be converted to an `Int`. If you're not sure if the
-/// user will enter a number, use `readLine()` instead to perform additional
+/// user will enter a number, use `readText()` instead to perform additional
 /// checks
 ///
 /// - Returns: The user's input converted to an integer
