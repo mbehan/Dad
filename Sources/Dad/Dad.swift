@@ -1,3 +1,5 @@
+import Foundation
+
 /// Read a number from the standard input.
 ///
 /// Reads a line from the standard input and attempts to create an `Int` from it.
@@ -21,4 +23,51 @@ public func readNumber() -> Int {
 public func readText() -> String {
     return readLine()!
 }
+
+/// Clears the screen
+///
+/// Prints the ANSI sequences that clear the screen and moves the cursor to the
+/// home position
+public func clear() {
+    print("\u{001B}[H \u{001B}2J")
+}
+
+/// Reads one character from the standard input
+///
+/// Returns as soon as a single key is pressed, there is no need for the user
+/// to press return after typing their input
+///
+/// - Returns: The single character that the user entered, as a `String`
+public func readOne() -> String {
+    return "\(UnicodeScalar(getch()))"
+}
+
+extension FileHandle {
+    func enableRawMode() -> termios {
+        var raw = termios()
+        tcgetattr(self.fileDescriptor, &raw)
+
+        let original = raw
+        raw.c_lflag &= ~UInt(ECHO | ICANON)
+        tcsetattr(self.fileDescriptor, TCSADRAIN, &raw)
+        return original
+    }
+
+    func restoreRawMode(originalTerm: termios) {
+        var term = originalTerm
+        tcsetattr(self.fileDescriptor, TCSADRAIN, &term)
+    }
+}
+
+func getch() -> UInt8 {
+    let handle = FileHandle.standardInput
+    let term = handle.enableRawMode()
+    defer { handle.restoreRawMode(originalTerm: term) }
+
+    var byte: UInt8 = 0
+    read(handle.fileDescriptor, &byte, 1)
+    return byte
+}
+
+
 
