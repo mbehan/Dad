@@ -6,9 +6,9 @@ A Swift package containing functions for novice programmers making their first c
 
 I'm making this package for my 11 year old son who is just starting to learn some programming. There are certain aspects of the Swift language that are distracting for the programming novice but are hard to avoid. I'm creating some functions to delay their appearance until we're ready.
 
-We're beginning with creating command line applications so this package includes helper methods to make that a bit easier and more interesting too.
+We're beginning with creating command line applications so this package includes helpers to make that a bit easier and more interesting too.
 
-Originally I wrote functions like this directly in his programs, but now we've moved on from manually compiling single-file programs ourselves with `swiftc` to the world of IDEs and Xcode so we're learning about importing packages. Now when he needs me he can `import Dad`, and so can anyone else that finds it useful. 
+Originally I wrote functions like these directly in his programs, but now we've moved on from manually compiling single-file programs ourselves with `swiftc` to the world of IDEs and Xcode so we're learning about importing packages. Now when he needs me he can `import Dad`, and so can anyone else that finds it useful. 
 
 ## Usage
 
