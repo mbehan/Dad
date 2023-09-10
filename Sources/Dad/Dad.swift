@@ -42,6 +42,44 @@ public func readOne() -> String {
     return "\(UnicodeScalar(getch()))"
 }
 
+
+/// Repeats the same code a number of times that you specify
+///
+/// If you're struggling with `while` loops, this is a simpler alternative. If you wanted to print
+/// `"Hello world"`5 times you'd use it as follows:
+///
+///      loop(times: 5) {
+///          print("Hello world")
+///      }
+///
+///  This is the same as
+///
+///      var i = 0
+///      while i < 5 {
+///          print("Hello world")
+///          i = i + 1
+///      }
+/// - Parameters:
+///   - times: how many times you want to loop
+///   - code: the code that you want to loop over
+public func loop(times: Int,_ code: ()->Void) {
+    for _ in 0..<times {
+        code()
+    }
+}
+
+/// Prints the path to the directory your program is currently running in
+///
+/// Similar to the `pwd` shell command. This may be useful if you're working in Xcode but want to
+/// run the latest version of your program from your terminal application. Put `printDirectory()`
+/// in your code to find the path to the executable that Xcode has built. Then you can `cd` to that directory
+/// and run the program yourself.
+@available(iOS 16.0, macOS 13.0, *)
+public func printDirectory() {
+    let dirURL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
+    print(dirURL.path())
+}
+
 extension FileHandle {
     func enableRawMode() -> termios {
         var raw = termios()
