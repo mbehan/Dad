@@ -12,36 +12,66 @@ struct ANSI {
     }
     
     enum TextColor: String {
-        case black = "30"
-        case red = "31"
-        case green = "32"
-        case yellow = "33"
-        case blue = "34"
-        case magenta = "35"
-        case cyan = "36"
-        case white = "37"
-        case original = "39"
+        case black, red, green, yellow, blue, magenta, cyan, white, original
+        
+        var code: String {
+            switch self {
+            case .black:
+                return "30"
+            case .red:
+                return "31"
+            case .green:
+                return "32"
+            case .yellow:
+                return "33"
+            case .blue:
+                return "34"
+            case .magenta:
+                return "35"
+            case .cyan:
+                return "36"
+            case .white:
+                return "37"
+            case .original:
+                return "39"
+            }
+        }
     }
 
     enum BgColor: String {
-        case black = "40"
-        case red = "41"
-        case green = "42"
-        case yellow = "43"
-        case blue = "44"
-        case magenta = "45"
-        case cyan = "46"
-        case white = "47"
-        case original = "49"
+        case black, red, green, yellow, blue, magenta, cyan, white, original
+        
+        var code: String {
+            switch self {
+            case .black:
+                return "40"
+            case .red:
+                return "41"
+            case .green:
+                return "42"
+            case .yellow:
+                return "43"
+            case .blue:
+                return "44"
+            case .magenta:
+                return "45"
+            case .cyan:
+                return "46"
+            case .white:
+                return "47"
+            case .original:
+                return "49"
+            }
+        }
     }
 }
 
 func setColor(_ color: ANSI.BgColor) {
-    print(ANSI.setColor(color.rawValue), terminator: "")
+    print(ANSI.setColor(color.code), terminator: "")
 }
 
 func setColor(_ color: ANSI.TextColor) {
-    print(ANSI.setColor(color.rawValue), terminator: "")
+    print(ANSI.setColor(color.code), terminator: "")
 }
 
 /// Set the colour of text that will be output using `print()`
