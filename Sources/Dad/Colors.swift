@@ -55,6 +55,6 @@ public func setColor(_ colorName: String) {
     if let color = Color(rawValue: colorName.lowercased()) {
         setColor(color)
     } else {
-        print("Error: Unknown color \(colorName)")
+        print("Error: Unknown colour \(colorName)")
     }
 }
