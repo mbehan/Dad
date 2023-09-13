@@ -16,6 +16,8 @@ Add this Swift package to your project and `import Dad` wherever you want to use
 
 All of the functions are documented, try the "Quick Help inspector" or option-click a function name in Xcode to read the documentation.
 
+With just these few functions, `if`, `var` and `print()` you can build a huge variety of command line programs and games. Enjoy!
+
 ## Command Line Interaction
 
 | Function | Description |
@@ -26,7 +28,29 @@ All of the functions are documented, try the "Quick Help inspector" or option-cl
 | `clear()` | Clears the the screen, similar to the `clear` shell command |
 | `printDirectory()` | Prints the directory the program is running from, convenient if you want to see where Xcode is putting things |
 
-With just these functions, `print`, conditionals and the basic `while` loop you can build a huge variety of programs and games. Enjoy!
+## Colours
+
+Make your command line apps more itneresting by adding colour to your output. Use `setTextColor` and `setBackgroundColor` to change the colour used by subsequent print statements. These functions take colour names as a `String` for their input like so:
+
+```swift
+setTextColor("red")
+print("This will be red")
+
+setBackgroundColor("yellow")
+print("     This will be in a yellow stripe!     ")
+```
+
+The following colours are supported:
+
+* black
+* red
+* green
+* yellow
+* blue
+* magenta
+* cyan
+* white
+* original (your terminal's default setting)
 
 ## Other Features
 
@@ -34,8 +58,10 @@ With just these functions, `print`, conditionals and the basic `while` loop you 
 
 If you're struggling with looping, this package provides an alternative with `loop`. Here's an example usage
 
-    loop(times: 5) {
-        print("Hello world!")
-    }
-    
+```swift
+loop(times: 5) {
+    print("Hello world!")
+}
+```
+
 Any code between the braces `{ }` will be repeated the number of times specified by the `times` parameter. You can put as many lines of code inside the braces as you wish, and the times paramater can be a number that you "hard code", like 5 in the example or a variable.
