@@ -32,6 +32,7 @@ public func clear() {
     print("\u{001B}[H \u{001B}2J")
 }
 
+#if !os(Windows)
 /// Reads one character from the standard input
 ///
 /// Returns as soon as a single key is pressed, there is no need for the user
@@ -80,3 +81,4 @@ func getch() -> UInt8 {
     read(handle.fileDescriptor, &byte, 1)
     return byte
 }
+#endif
