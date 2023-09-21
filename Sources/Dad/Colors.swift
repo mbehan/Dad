@@ -11,8 +11,21 @@ struct ANSI {
         return "\(ANSI.escape)\(ANSI.csi)\(ANSI.defaultTextStyle)\(ANSI.delim)\(colorCode)\(ANSI.endOfStyle)"
     }
     
+    static func setColor(background: String, text: String) -> String {
+        return "\(ANSI.escape)\(ANSI.csi)\(ANSI.defaultTextStyle)\(ANSI.delim)\(text)\(ANSI.delim)\(background)\(ANSI.endOfStyle)"
+    }
+    
     enum TextColor: String {
         case black, red, green, yellow, blue, magenta, cyan, white, original
+        
+        static func color(with name: String) -> TextColor? {
+            if let color = Self(rawValue: name.lowercased()) {
+                return color
+            } else {
+                print("Error: Unknown colour \(name)")
+                return nil
+            }
+        }
         
         var code: String {
             switch self {
@@ -41,6 +54,15 @@ struct ANSI {
     enum BgColor: String {
         case black, red, green, yellow, blue, magenta, cyan, white, original
         
+        static func color(with name: String) -> BgColor? {
+            if let color = Self(rawValue: name.lowercased()) {
+                return color
+            } else {
+                print("Error: Unknown colour \(name)")
+                return nil
+            }
+        }
+        
         var code: String {
             switch self {
             case .black:
@@ -64,6 +86,10 @@ struct ANSI {
             }
         }
     }
+}
+
+func setColors(background: ANSI.BgColor, text: ANSI.TextColor) {
+    print(ANSI.setColor(background: background.code, text: text.code), terminator: "")
 }
 
 func setColor(_ color: ANSI.BgColor) {
@@ -97,10 +123,8 @@ func setColor(_ color: ANSI.TextColor) {
 /// - Note: Most terminals support colour output but Xcode's debug console does not
 /// - Parameter colorName: a `String` containing the name of your desired colour
 public func setTextColor(_ colorName: String) {
-    if let color = ANSI.TextColor(rawValue: colorName.lowercased()) {
+    if let color = ANSI.TextColor.color(with: colorName) {
         setColor(color)
-    } else {
-        print("Error: Unknown colour \(colorName)")
     }
 }
 
@@ -127,9 +151,36 @@ public func setTextColor(_ colorName: String) {
 /// - Note: Most terminals support colour output but Xcode's debug console does not
 /// - Parameter colorName: a `String` containing the name of your desired colour
 public func setBackgroundColor(_ colorName: String) {
-    if let color = ANSI.BgColor(rawValue: colorName.lowercased()) {
+    if let color = ANSI.BgColor.color(with: colorName) {
         setColor(color)
-    } else {
-        print("Error: Unknown colour \(colorName)")
+    }
+}
+
+/// Set the colour of the background and text that will be output using `print()`
+///
+/// You must specify one of the supported colours as a `String`. If you provide anything
+/// else an error will be printed and there will be no change made to your output. Colour
+/// names are *not* case sensitvie.
+///
+/// The supported colours are:
+///
+/// * Black
+/// * Red
+/// * Green
+/// * Yellow
+/// * Blue
+/// * Magenta
+/// * Cyan
+/// * White
+/// * Original
+///
+///  To revert to your terminal's default background colour you can specify `"original"`
+///
+/// - Note: Most terminals support colour output but Xcode's debug console does not
+/// - Parameter text: a `String` containing the name of your desired text colour
+/// - Parameter background: a `String` containing the name of your desired background colour
+public func setColors(text: String, background: String) {
+    if let text = ANSI.TextColor.color(with: text), let bg = ANSI.BgColor.color(with: background) {
+        setColors(background: bg, text: text)
     }
 }
