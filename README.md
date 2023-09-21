@@ -10,6 +10,10 @@ We're beginning with creating command line applications so this package includes
 
 Originally I wrote functions like these directly in his programs, but now we've moved on from manually compiling single-file programs ourselves with `swiftc` to the world of IDEs and Xcode so we're learning about importing packages. Now when he needs me he can `import Dad`, and so can anyone else that finds it useful. 
 
+## OS Support
+
+This package is intended to be used on both macOS and Windows but certain functions are not available on Windows.
+
 ## Usage
 
 Add this Swift package to your project and `import Dad` wherever you want to use any of its functions. The functions are all defined globally so you don't need to set anything up, just call them.
