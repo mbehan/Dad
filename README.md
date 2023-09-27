@@ -30,6 +30,7 @@ With just these few functions, `if`, `var` and `print()` you can build a huge va
 | `readNumber()` | Read a number from the standard input, returns an `Int` |
 | `readOne()` |   Read a single character from the standard input as soon as it is typed, returns a `String`     |
 | `clear()` | Clears the the screen, similar to the `clear` shell command |
+| `alert()` | Plays an audible alert |
 | `printDirectory()` | Prints the directory the program is running from, convenient if you want to see where Xcode is putting things |
 
 ## Colours

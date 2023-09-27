@@ -32,6 +32,15 @@ public func clear() {
     print("\u{001B}[H \u{001B}2J")
 }
 
+
+/// Plays an alert
+///
+/// Prints the ASCII bell character, the result of which will be determined by your shell or terminal
+/// application, typically an an alert sound will be played with the character not appearing visually.
+public func alert() {
+    print("\u{7}")
+}
+
 #if !os(Windows)
 /// Reads one character from the standard input
 ///
